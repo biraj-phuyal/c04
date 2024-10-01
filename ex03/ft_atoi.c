@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bphuyal <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 13:38:09 by bphuyal           #+#    #+#             */
-/*   Updated: 2024/10/01 18:37:04 by bphuyal          ###   ########.fr       */
+/*   Created: 2024/10/01 18:45:29 by bphuyal           #+#    #+#             */
+/*   Updated: 2024/10/01 21:03:30 by bphuyal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putnbr(int nb)
+int ft_atoi(char *str)
 {
-	char	digits;
+	int	i;
+	int	sign;
+	int	result;
 
-	if (nb == -2147483648)
+	i = 0;
+	sign = 1;
+	result = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == "-" && str[i] == "+")
 	{
-		write (1, "-2147483648", 11);
-		return;
+		if (str[i] == "-")
+			sign = *-1
+		str++;
 	}
-	if (nb < 0)
+	while (*str >= '0' && *str <= '9')
 	{
-		write (1, "-", 1);
-		nb = -nb;
+		result = result * 10 + (*str - '\0');
 	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10);
-	digits = '0' + (nb % 10);
-	write (1, &digits, 1);
-
-}
-
-int	main()
-{
-	int nb = -897543; 
-	ft_putnbr(nb);
+	return (int)(sign * result);
 }
